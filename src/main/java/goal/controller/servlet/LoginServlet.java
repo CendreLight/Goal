@@ -10,18 +10,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ManageUser manageUser = new ManageUser();
 		manageUser.authenticationCookie(request, response);
-		request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
+		if(manageUser.isLogged(request, response)) {
+			response.sendRedirect(request.getContextPath() + "/home");
+		}
+		else {
+			request.getRequestDispatcher("jsp/login.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		ManageUser manageUser = new ManageUser();
+		try {
+			manageUser.authentication(request, response);
+			response.sendRedirect(request.getContextPath() + "/home");
+		}
+		catch(Exception e) {
+			request.setAttribute("notifications", manageUser.getNotification());
+			request.getRequestDispatcher("jsp/login.jsp").forward(request, response);	
+		}
 	}
 
 }

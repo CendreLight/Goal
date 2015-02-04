@@ -8,10 +8,10 @@
 	<head>
 		<meta charset='utf-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1' />
-		<title>file - <c:out value="${file.title}"/></title>
+		<title>web - <c:out value="${title}"/></title>
 		<link rel='stylesheet' type='text/css' href='css/bootstrap.css' />
 		<link rel='stylesheet' type='text/css' href='css/style.css' />
-		<link rel='stylesheet' type='text/css' href='css/file.css' />
+		<link rel='stylesheet' type='text/css' href='css/web.css' />
 		<script src='js/jquery.js'></script>
 		<script src='js/bootstrap.js'></script>
 	</head>
@@ -32,10 +32,7 @@
 			<div class='grid'>
 				<div class='row'>
 					<div class='column small-12'>
-						<h3><c:out value="${file.title}"/></h3>
-						<p class='text-justify'>
-							<c:out value="${file.content}"/>
-						</p>
+						<iframe src='<c:out value="${target}"/>'></iframe>
 					</div>
 				</div>
 			</div>
