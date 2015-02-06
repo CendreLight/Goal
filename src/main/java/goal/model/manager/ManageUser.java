@@ -142,6 +142,10 @@ public class ManageUser {
 		}
 	}
 	
+	public User getUser(HttpSession session){
+		return (User) session.getAttribute(this.SESSION_NAME);
+	}
+	
 	private void setSession(User user, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		session.setAttribute(this.SESSION_NAME, user);

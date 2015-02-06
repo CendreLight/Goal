@@ -22,6 +22,13 @@ public class Result implements Comparable<Result> {
 		}
 	}
 	
+	public boolean sameDocumentAs(Result otherDoc){
+		if(this.getClass().equals(otherDoc.getClass()))
+			if(this.location.equals(otherDoc.location))
+				return true;
+		return false;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
